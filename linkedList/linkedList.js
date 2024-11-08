@@ -110,22 +110,46 @@ class LinkedList {
     }
     let currPos = 1;
     let current = this.head;
-    while ( currPos < pos - 1) {
+    while (currPos < pos - 1) {
       current = current.next;
       currPos++;
     }
-    if (!current.next) return 'enter valid position';
-    current.next = current.next.next
+    if (!current.next) return "enter valid position";
+    current.next = current.next.next;
+  }
+  isPrime(value) {
+    if (value <= 1) return false;
+    for (let i = 2; i <= value/2; i++) {
+      if (value % i === 0) return false
+    }
+    return true
+  }
+  removePrimeNumbers() {
+    if (this.isEmpty()) return;
+    if(this.isPrime(this.head.value)){
+      this.head = this.head.next
+    }
+    let current = this.head
+    while(current && current.next){
+      if(this.isPrime(current.next.value)){
+        current.next = current.next.next
+      }else{
+        current = current.next
+      }
+      // current = current.next
+    }
   }
 }
 
 const linkedList = new LinkedList();
 
-linkedList.prepend("zizou");
-linkedList.prepend("kiran");
-linkedList.prepend("shephin");
-linkedList.prepend("ashin");
-linkedList.deleteFromPosition(4)
+linkedList.prepend(4);
+linkedList.prepend(7);
 
+linkedList.prepend(3);
+linkedList.prepend(9);
+
+// linkedList.deleteFromPosition(4);
+linkedList.removePrimeNumbers();
 const list = linkedList.print();
 console.log(list);
