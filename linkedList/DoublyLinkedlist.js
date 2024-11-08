@@ -1,19 +1,18 @@
 class Node {
   constructor(value) {
     this.value = value;
-    this.prev = null;
-    this.next = null;
+    this.next = this.prev = null;
   }
 }
-class linkedList {
-  constructor() {
-    this.head = this.tail = null;
+class DoublyLinkedList{
+  constructor(){
+    this.head = this.tail = null
   }
   isEmpty() {
     return this.head === null;
   }
-  prepend(val) {
-    let node = new Node(val);
+  prepend(value) {
+    const node = new Node(value);
     if (this.isEmpty()) {
       this.head = this.tail = node;
       return;
@@ -22,58 +21,57 @@ class linkedList {
     this.head.prev = node;
     this.head = node;
   }
-  append(val) {
-    const node = new Node(val);
+  append(value) {
+    const node = new Node(value);
     if (this.isEmpty()) {
       this.head = this.tail = node;
-      return;
     }
     this.tail.next = node;
     node.prev = this.tail;
     this.tail = node;
   }
   print() {
-    let val = "";
-    let curr = this.head;
-    while (curr) {
-      val += " " + curr.value;
-      curr = curr.next;
+    let list = "";
+    let current = this.head;
+    while (current) {
+      list += current.value;
+      current = current.next;
     }
-    return val;
+    return list;
   }
-  removefromStart() {
-    if (this.isEmpty()) {
-      return;
-    }
+  removeFromStart() {
+    if (this.isEmpty()) return false;
     this.head = this.head.next;
   }
-  removefromEnd() {
-    if (this.isEmpty()) {
+  removeFromEnd() {
+    if (this.isEmpty()) return;
+    this.tail = this.tail.prev;
+  }
+  deleteFromPosition(pos) {
+    if (this.isEmpty()) return;
+    if (pos === 1) {
+      this.head = this.head.next;
       return;
     }
-    this.tail = this.tail.prev;
-    this.tail.next = null;
-  }
-  reverselinkedList() {
+    let currPos = 1;
     let curr = this.head;
-    let temp =null
-    while (curr) {
-       temp = curr.prev;
-      curr.prev = curr.next;
-      curr.next = temp;
-      curr = curr.prev;
-
+    while (curr.next && currPos < pos - 1) {
+      curr = curr.next;
     }
-    if (temp != null) {
-        this.head = temp.prev;
-    }
-    // curr = this.head;
+    let deleteElement = curr.next
+    curr.next = deleteElement.next
+    deleteElement.prev = curr
   }
 }
-const list = new linkedList();
-list.append(1);
-list.append(2);
-list.append(3);
-console.log(list.print());
-list.reverselinkedList();
-console.log(list.print());
+
+const doublyLinkedList = new DoublyLinkedList()
+
+doublyLinkedList.append(1)
+doublyLinkedList.append(2)
+doublyLinkedList.append(3)
+doublyLinkedList.append(4)
+doublyLinkedList.append(5)
+const list = doublyLinkedList.print()
+console.log(list);
+
+

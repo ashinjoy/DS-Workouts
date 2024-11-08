@@ -119,36 +119,33 @@ class LinkedList {
   }
   isPrime(value) {
     if (value <= 1) return false;
-    for (let i = 2; i <= value/2; i++) {
-      if (value % i === 0) return false
+    for (let i = 2; i <= Math.sqrt(value); i++) {
+      if (value % i === 0) return false;
     }
-    return true
+    return true;
   }
   removePrimeNumbers() {
     if (this.isEmpty()) return;
-    if(this.isPrime(this.head.value)){
-      this.head = this.head.next
+    while (this.head  && this.isPrime(this.head.value)){
+      this.head = this.head.next;
     }
-    let current = this.head
-    while(current && current.next){
-      if(this.isPrime(current.next.value)){
-        current.next = current.next.next
-      }else{
-        current = current.next
+    let current = this.head;
+    while (current && current.next) {
+      if (this.isPrime(current.next.value)) {
+        current.next = current.next.next;
+      } else {
+        current = current.next;
       }
-      // current = current.next
     }
   }
 }
 
 const linkedList = new LinkedList();
 
-linkedList.prepend(4);
+linkedList.prepend(2);
+linkedList.prepend(1);
 linkedList.prepend(7);
-
-linkedList.prepend(3);
-linkedList.prepend(9);
-
+linkedList.prepend(1);
 // linkedList.deleteFromPosition(4);
 linkedList.removePrimeNumbers();
 const list = linkedList.print();
