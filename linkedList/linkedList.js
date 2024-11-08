@@ -110,12 +110,12 @@ class LinkedList {
     }
     let currPos = 1;
     let current = this.head;
-    while (current.next && currPos < pos - 1) {
+    while ( currPos < pos - 1) {
       current = current.next;
       currPos++;
     }
-    if (!current.next) return;
-    current = current.next.next
+    if (!current.next) return 'enter valid position';
+    current.next = current.next.next
   }
 }
 
@@ -125,7 +125,7 @@ linkedList.prepend("zizou");
 linkedList.prepend("kiran");
 linkedList.prepend("shephin");
 linkedList.prepend("ashin");
-linkedList.deleteFromPosition(1);
+linkedList.deleteFromPosition(4)
 
 const list = linkedList.print();
 console.log(list);
