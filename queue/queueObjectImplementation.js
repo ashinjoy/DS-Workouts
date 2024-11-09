@@ -6,13 +6,11 @@ class queue{
 }
 enqueue(value){
     this.items[this.rear] = value
-    // console.log(this.items[this.rear] = value)
     this.rear++
     
 }
 dequeue(){
     const item = this.items[this.front]
-//  console.log( this.items[this.front])
     delete this.items[this.front]
     this.front++
     return item
