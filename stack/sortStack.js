@@ -1,5 +1,3 @@
-
-
 class Node {
   constructor(value) {
     this.value = value;
@@ -31,9 +29,10 @@ class Stack {
     if (this.isEmpty()) {
       return -1;
     }
+    let deleteNode = this.top;
     this.top = this.top.next;
     this.length--;
-    return;
+    return deleteNode.value;
   }
   isLength() {
     return this.length;
@@ -43,10 +42,9 @@ class Stack {
     return this.top.value;
   }
   print() {
-    if(this.isEmpty()){
+    if (this.isEmpty()) {
       console.log("Stack is Emppty");
-      return
-      
+      return;
     }
     let value = "";
     let current = this.top;
@@ -55,25 +53,30 @@ class Stack {
       value += current.value + " ";
       current = current.next;
     }
-    return value
+    return value;
+  }
+  sort() {
+    if (this.isEmpty()) {
+      return "stack is empty";
+    }
+    const sortedStack = new Stack();
+    while (!this.isEmpty()) {
+      const currentElement = this.pop();
+      while (!sortedStack.isEmpty() && sortedStack.isPeek() < currentElement) {
+        this.push(sortedStack.pop());
+      }
+      sortedStack.push(currentElement);
+    }
+    return sortedStack
   }
 }
 
-const stack = new Stack()
-stack.push(10)
-stack.push(20)
-stack.push(30)
-stack.push(40)
-stack.pop()
-console.log(stack.isPeek());
-console.log(stack.isLength());
-
-
-const  result = stack.print()
-console.log(result);
-
-
-
-
-
-
+const stack = new Stack();
+stack.push(1);
+stack.push(10);
+stack.push(11);
+stack.push(3);
+stack.push(4);
+const se = stack.sort()
+console.log(se.print())
+// console.log(stack.print());
