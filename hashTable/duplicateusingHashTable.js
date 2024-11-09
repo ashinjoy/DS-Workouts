@@ -12,7 +12,7 @@ function containsDuplicate(nums) {
     return false; // No duplicates found
 }
 
-// Example usage
+
 const array1 = [1, 2, 3, 4, 5];
 const array2 = [1, 2, 3, 4, 5, 1];
 
