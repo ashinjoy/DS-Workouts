@@ -14,7 +14,7 @@
 //     pop(){
 //         if (this.isEmpty()) {
 //             return null;
-//         }
+//         } 
 //         this.size -= 1;
 //         const removeValue = this.items[this.size];
 //         this.items.length = this.size; // Manually adjust the length of the array
