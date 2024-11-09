@@ -46,38 +46,31 @@ class HashTable {
     this.size = size;
   }
   hash(key) {
-    
     let total = 0;
     for (let i = 0; i < key.length; i++) {
       total += key.charCodeAt(i);
     }
-    
-    
+
     return total % this.size;
   }
   set(key, value) {
     let index = this.hash(key);
-   
-    
+
     let bucket = this.table[index];
 
-    
     if (!bucket) {
       this.table[index] = [[key, value]];
     } else {
-      let sameItem = bucket.find((el) =>{return el[0] === key});
-     
+      let sameItem = bucket.find((el) => {
+        return el[0] === key;
+      });
+
       if (sameItem) {
         sameItem[1] = value;
       } else {
-
         bucket.push([key, value]);
-       
-        
       }
     }
-    
-    
   }
   get(key) {
     const index = this.hash(key);
@@ -100,8 +93,8 @@ class HashTable {
   }
   display() {
     for (let i = 0; i < this.table.length; i++) {
-        // console.log(this.table.length);
-        
+      // console.log(this.table.length);
+
       if (this.table[i]) {
         console.log(this.table[i]);
       }
@@ -113,6 +106,6 @@ const hashtable = new HashTable(5);
 hashtable.set("ashin", "1910");
 hashtable.set("asja", "ronaldo");
 // console.log(hashtable.get("ashin"))
-hashtable.set("ass","kiran")
-hashtable.remove("ashin")
+hashtable.set("ass", "kiran");
+hashtable.remove("ashin");
 hashtable.display();
