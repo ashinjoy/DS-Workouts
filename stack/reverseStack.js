@@ -50,6 +50,5 @@ stack.push("hi");
 stack.push("h");
 const data = stack.print();
 console.log(data);
-
 const result = stack.reverseStack();
 console.log(result);
