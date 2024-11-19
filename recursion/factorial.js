@@ -3,6 +3,6 @@
     return n * factorial(n-1)
 
  }
- factorial(5)
+ const result = factorial(5)
 
 
